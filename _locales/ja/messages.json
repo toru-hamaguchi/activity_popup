@@ -1,0 +1,18 @@
+{
+  "extName": {
+    "message": "Activity Popup",
+    "description": "Extention name"
+  },
+  "extDescription": {
+    "message": "Activity Popup は Google Chrome のための \"構成ファイル一覧\" です。",
+    "description": "About this extention"
+  },
+  "selectAll": {
+    "message": "すべて選択",
+    "description": "\"Select all\" button text"
+  },
+  "copyToClipboard": {
+    "message": "クリップボードにコピー",
+    "description": "\"Copy to clipboard\" button text"
+  }
+}

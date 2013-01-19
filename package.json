@@ -1,0 +1,14 @@
+{
+  "name": "Activity Popup",
+  "version": "0.1.0",
+  "description": "",
+  "repository": "",
+  "author": "toru hamaguchi",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

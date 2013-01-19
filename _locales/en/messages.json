@@ -1,0 +1,18 @@
+{
+  "extName": {
+    "message": "Activity Popup",
+    "description": "Extention name"
+  },
+  "extDescription": {
+    "message": "Activity Popup is \"Activity Window\" for Google Chrome.",
+    "description": "About this extention"
+  },
+  "selectAll": {
+    "message": "Select all",
+    "description": "\"Select all\" button text"
+  },
+  "copyToClipboard": {
+    "message": "Copy to clipboard",
+    "description": "\"Copy to clipboard\" button text"
+  }
+}
