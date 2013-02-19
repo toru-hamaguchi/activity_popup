@@ -2,11 +2,10 @@
   "name": "activity-popup",
   "version": "0.1.0",
   "description": "",
-  "repository": "",
   "author": "toru hamaguchi",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/toru-hamaguchi/activity_popup.git"
   },
   "license": "MIT",
   "dependencies": {},
