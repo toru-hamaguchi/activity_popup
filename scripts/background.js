@@ -67,7 +67,6 @@
       window.templates[name] = event.data.html;
     }
     if (type === 'copy') {
-      console.log(window);
       sendTextToClipboard(event.data.text);
     }
   };
