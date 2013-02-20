@@ -4,7 +4,7 @@ Activity Popup
 
 Activity Popup is "Activity Window" for Google Chrome.
 
-installation
+Installation
 ------------
 
 1. Wrench icon > "Tools" > "Extensions"
