@@ -33,7 +33,11 @@
         list.push($(this).text());
       });
 
-      sendTextToClipboard(list.join('\n'));
+      /* Send text to background. */
+      background.postMessage({
+        type: 'copy',
+        text: list.join('\n')
+      }, background.location.origin);
     }
   };
 

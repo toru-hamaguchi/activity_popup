@@ -5,6 +5,20 @@
 (function() {
 
   /**
+   * Send text to clipboard.
+   *
+   * @param {String} text to send.
+   */
+  var sendTextToClipboard = function(text) {
+    /* Set textarea for copy. */
+    var copyBuffer = document.querySelector('#copy-buffer');
+    copyBuffer.value = text;
+    copyBuffer.select();
+
+    document.execCommand('copy', false, null);
+  };
+
+  /**
    * Set tab event handler.
    */
   var setTabEvents = function() {
@@ -51,6 +65,10 @@
 
     if (type === 'template') {
       window.templates[name] = event.data.html;
+    }
+    if (type === 'copy') {
+      console.log(window);
+      sendTextToClipboard(event.data.text);
     }
   };
 
