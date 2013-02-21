@@ -107,29 +107,6 @@
   };
 
   /**
-   * Send text to clipboard.
-   *
-   * @param {String} text to send.
-   */
-  var sendTextToClipboard = function(text) {
-    var $workspace = $('#workspace')
-      , $copyBuffer = $('#copy-buffer');
-
-    /* NOTES: Chrome permits visible contents copy. */
-    $workspace.show();
-
-    /* Set textarea for copy. */
-    $copyBuffer
-      .val(text)
-      .select()
-    ;
-
-    document.execCommand('copy');
-
-    $workspace.hide();
-  };
-
-  /**
    * Set controls action.
    */
   var setContolsAction = function() {
