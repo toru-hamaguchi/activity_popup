@@ -72,7 +72,7 @@
       size: 32
     });
 
-    $.each(background.activityCollection.getData(), function(id, data) {
+    $.each(background.tabCollection.getData(), function(id, data) {
       var tabId = parseInt(id, 10);
 
       /* Check valid tab ID. */

@@ -25,14 +25,14 @@
     /* On created. */
     chrome.tabs.onCreated.addListener(
       function(tab) {
-        window.activityCollection.init(tab.id);
+        window.tabCollection.init(tab.id);
       }
     );
 
     /* On removed. */
     chrome.tabs.onRemoved.addListener(
       function(tabId, removeInfo) {
-        window.activityCollection.remove(tabId);
+        window.tabCollection.remove(tabId);
       }
     );
   };
@@ -81,13 +81,13 @@
     window.addEventListener('load', onWindowLoaded);
     window.addEventListener('message', onMessageRecieved);
 
-    /* Create a activity collection object. */
-    window.activityCollection = new window.ActivityCollection();
+    /* Create a tab collection object. */
+    window.tabCollection = new window.TabCollection();
 
     /* Observe requests. */
     chrome.webRequest.onBeforeRequest.addListener(
       function(details) {
-        window.activityCollection.add(details.tabId, {
+        window.tabCollection.add(details.tabId, {
           url: details.url
         });
       },
