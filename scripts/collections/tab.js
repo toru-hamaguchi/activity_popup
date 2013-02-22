@@ -15,42 +15,50 @@
     /**
      * @private
      */
-    var dataStore;
+    var _collectionStore;
 
     /**
      * @constructs
      */
     ctor = function TabCollection() {
-      this.dataStore = {};
+      this._collectionStore = {};
     };
     proto = ctor.prototype = {};
     proto.constructor = ctor;
 
     /**
      * Initialize a tab group.
+     *
+     * @param {String} id of tab ID.
      */
     proto.init = function(tabId) {
-      if (this.dataStore[tabId]) {
+      if (this._collectionStore[tabId]) {
         this.remove(tabId);
       }
-      this.dataStore[tabId] = {
-        activities: []
-      };
+      this._collectionStore[tabId] = new window.ActivityCollection();
     };
 
     /**
      * Add a data to a tab group.
+     *
+     * @param {String} id of tab ID.
+     * @param {Object} activity model.
      */
-    proto.add = function(tabId, data) {
-      var activities;
+    proto.add = function(tabId, activity) {
+      var collection
+        , requestUrl = activity.get('url')
+        , storedActivity;
 
-      if (this.dataStore[tabId] === undefined) {
+      if (this._collectionStore[tabId] === undefined) {
         this.init(tabId);
       }
+      collection = this._collectionStore[tabId];
 
-      activities = this.dataStore[tabId].activities;
-      if (activities.indexOf(data.url) === -1) {
-        activities.push(data.url);
+      storedActivity = collection.find(function(model) {
+        return model.get('url') === requestUrl;
+      });
+      if (storedActivity === undefined) {
+        collection.add(activity);
       }
     };
 
@@ -58,19 +66,19 @@
      * Get a data by tab ID.
      *
      * @param {String} id of tab ID.
-     * @returns {Object} Activities data in the tab.
+     * @returns {Object} Activitiy collection in the tab.
      */
     proto.get = function(tabId) {
-      return this.dataStore[tabId];
+      return this._collectionStore[tabId];
     };
 
     /**
      * Get all data.
      *
-     * @returns {Object} all tab data.
+     * @returns {Object} All activity collections.
      */
     proto.getData = function() {
-      return this.dataStore;
+      return this._collectionStore;
     };
 
     /**
@@ -79,8 +87,8 @@
      * @param {String} id of tab ID.
      */
     proto.remove = function(tabId) {
-      if (this.dataStore[tabId]) {
-        delete this.dataStore[tabId];
+      if (this._collectionStore[tabId]) {
+        delete this._collectionStore[tabId];
       }
     };
 

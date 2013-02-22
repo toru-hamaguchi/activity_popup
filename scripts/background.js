@@ -2,7 +2,9 @@
  * @fileOverview background functions.
  */
 
-(function() {
+(function(exports) {
+
+  var tabCollection;
 
   /**
    * Send text to clipboard.
@@ -82,18 +84,18 @@
     window.addEventListener('message', onMessageRecieved);
 
     /* Create a tab collection object. */
-    window.tabCollection = new window.TabCollection();
+    tabCollection = new window.TabCollection();
 
     /* Observe requests. */
     chrome.webRequest.onBeforeRequest.addListener(
       function(details) {
-        window.tabCollection.add(details.tabId, {
-          url: details.url
-        });
+        tabCollection.add(details.tabId, new window.ActivityModel(details));
       },
       { urls: ['<all_urls>'] },
       [ 'blocking' ]
     );
   }());
 
-}());
+  exports.tabCollection = tabCollection;
+
+}(window));

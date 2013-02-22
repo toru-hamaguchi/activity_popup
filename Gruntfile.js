@@ -52,14 +52,20 @@ module.exports = function(grunt) {
         globals: {
           chrome: true,
           jQuery: true,
-          _: true
+          _: true,
+          Backbone: true
         }
       },
       gruntfile: {
         src: 'Gruntfile.js'
       },
       scripts: {
-        src: ['scripts/*.js', 'scripts/collections/*.js']
+        src: [
+          'scripts/*.js',
+          'scripts/models/*.js',
+          'scripts/collections/*.js',
+          'scripts/views/*.js'
+        ]
       }
     },
     qunit: {

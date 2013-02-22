@@ -2,7 +2,7 @@
  * @fileOverview popup functions.
  */
 
-(function($) {
+(function($, _) {
 
   var background;
 
@@ -72,7 +72,7 @@
       size: 32
     });
 
-    $.each(background.tabCollection.getData(), function(id, data) {
+    _.each(background.tabCollection.getData(), function(activities, id) {
       var tabId = parseInt(id, 10);
 
       /* Check valid tab ID. */
@@ -87,8 +87,8 @@
         if (tab) {
           /* Add activities in a tab. */
           group = ['<optgroup label="'+ tab.url +'">'];
-          $.each(data.activities, function(requestId, url) {
-            group.push('<option>'+ url +'</option>');
+          _.each(activities.models, function(model) {
+            group.push('<option>'+ model.get('url') +'</option>');
           });
           group.push('</optgroup>');
 
@@ -141,4 +141,4 @@
     document.addEventListener('DOMContentLoaded', onDocumentLoaded);
   }());
 
-}(jQuery));
+}(jQuery, _));
