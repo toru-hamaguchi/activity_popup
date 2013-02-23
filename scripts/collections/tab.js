@@ -63,16 +63,6 @@
     };
 
     /**
-     * Get a data by tab ID.
-     *
-     * @param {String} id of tab ID.
-     * @returns {Object} Activitiy collection in the tab.
-     */
-    proto.get = function(tabId) {
-      return this._collectionStore[tabId];
-    };
-
-    /**
      * Get all data.
      *
      * @returns {Object} All activity collections.
