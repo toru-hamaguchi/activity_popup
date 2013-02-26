@@ -81,18 +81,21 @@
       }
 
       chrome.tabs.get(tabId, function(tab) {
-        var group;
+        var $group;
 
         /* NOTES: Sometimes chrome passes undefined tab. */
         if (tab) {
           /* Add activities in a tab. */
-          group = ['<optgroup label="'+ tab.url +'">'];
-          _.each(activities.models, function(model) {
-            group.push('<option>'+ model.get('url') +'</option>');
-          });
-          group.push('</optgroup>');
+          $group = $('<optgroup label="'+ tab.url +'"></optgroup>');
 
-          $list.append(group.join(''));
+          _.each(activities.models, function(model) {
+            var activity = new background.ActivityView({
+              model: model
+            });
+            $group.append(activity.el);
+          });
+
+          $list.append($group);
         }
       });
     });
