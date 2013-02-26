@@ -1,0 +1,22 @@
+{
+  "curly": true,
+  "eqeqeq": true,
+  "eqnull": true,
+  "immed": true,
+  "latedef": true,
+  "noarg": true,
+  "undef": true,
+
+  "laxcomma": true,
+  "newcap": true,
+  "sub": true,
+  "trailing": true,
+
+  "browser": true,
+  "globals": {
+    "chrome": true,
+    "jQuery": true,
+    "_": true,
+    "Backbone": true
+  }
+}

@@ -32,29 +32,7 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
-        /* The good parts. */
-        curly: true,
-        eqeqeq: true,
-        eqnull: true,
-        immed: true,
-        latedef: true,
-        noarg: true,
-        undef: true,
-
-        /* Personal styling. */
-        laxcomma: true,
-        newcap: true,
-        sub: true,
-        trailing: true,
-
-        /* Predefined globals. */
-        browser: true,
-        globals: {
-          chrome: true,
-          jQuery: true,
-          _: true,
-          Backbone: true
-        }
+        jshintrc: '.jshintrc'
       },
       gruntfile: {
         src: 'Gruntfile.js'
