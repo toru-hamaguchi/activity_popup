@@ -67,10 +67,7 @@
    */
   var addActivityList = function() {
     /* Create a container. */
-    var $list = $('<select />').attr({
-      multiple: 'multiple',
-      size: 32
-    });
+    var list = new background.ActivityListView();
 
     /* Add all activities in tabs. */
     _.each(background.tabs.models, function(tab) {
@@ -88,17 +85,17 @@
           }
         });
 
-        $list.append(activityGroup.el);
+        list.$el.append(activityGroup.el);
       });
     });
 
-    $('#activity').append($list);
+    $('#activity').append(list.$el);
 
     /* Set events. */
-    $list
-      .on('change', onSelectionChanged)
-      .on('keypress', onSelectionKeypress)
-    ;
+    list.on({
+      'change': onSelectionChanged,
+      'keypress': onSelectionKeypress
+    });
   };
 
   /**
