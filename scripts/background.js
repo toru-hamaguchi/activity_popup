@@ -4,7 +4,8 @@
 
 (function(exports) {
 
-  var tabCollection;
+  // var tabCollection;
+  var tabs = new window.TabCollection();
 
   /**
    * Send text to clipboard.
@@ -27,14 +28,23 @@
     /* On created. */
     chrome.tabs.onCreated.addListener(
       function(tab) {
-        window.tabCollection.init(tab.id);
+        var newTab = new window.TabModel(tab);
+        newTab.set({
+          activities: new window.ActivityCollection()
+        });
+        window.tabs.add(newTab);
       }
     );
 
     /* On removed. */
     chrome.tabs.onRemoved.addListener(
       function(tabId, removeInfo) {
-        window.tabCollection.remove(tabId);
+        var currentTab = window.tabs.find(function(tab) {
+          return tab.id === tabId;
+        });
+        if (currentTab) {
+          window.tabs.remove(currentTab);
+        }
       }
     );
   };
@@ -74,6 +84,42 @@
   };
 
   /**
+   * On before request.
+   *
+   * @param {Object} details
+   */
+  var onBeforeRequest = function(details) {
+    var tabId = details.tabId
+      , currentTab;
+
+    /* Check invalid tab id. */
+    if (tabId < 0) {
+      return;
+    }
+
+    /* Find the tab model from stored collection. */
+    currentTab = window.tabs.find(function(tab) {
+      return tab.id === tabId;
+    });
+
+    if (currentTab === undefined) {
+      /* Add a new tab model to collection. */
+      currentTab = new window.TabModel({
+        activities: new window.ActivityCollection()
+      });
+      window.tabs.add(currentTab);
+
+      /* Set tab data to the new model. */
+      chrome.tabs.get(tabId, function(tab) {
+        currentTab.set(tab);
+      });
+    }
+
+    /* Add the request data to activity collection. */
+    currentTab.get('activities').add(details);
+  };
+
+  /**
    * Initialize.
    */
   (function() {
@@ -83,19 +129,14 @@
     window.addEventListener('load', onWindowLoaded);
     window.addEventListener('message', onMessageRecieved);
 
-    /* Create a tab collection object. */
-    tabCollection = new window.TabCollection();
-
     /* Observe requests. */
     chrome.webRequest.onBeforeRequest.addListener(
-      function(details) {
-        tabCollection.add(details.tabId, new window.ActivityModel(details));
-      },
+      onBeforeRequest,
       { urls: ['<all_urls>'] },
       [ 'blocking' ]
     );
   }());
 
-  exports.tabCollection = tabCollection;
+  exports.tabs = tabs;
 
 }(window));

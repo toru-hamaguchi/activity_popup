@@ -72,27 +72,23 @@
       size: 32
     });
 
-    _.each(background.tabCollection.getData(), function(activities, id) {
-      var tabId = parseInt(id, 10);
-
-      /* Check valid tab ID. */
-      if (tabId < 0) {
-        return;
-      }
-
-      chrome.tabs.get(tabId, function(tab) {
+    /* Add all activities in tabs. */
+    _.each(background.tabs.models, function(tab) {
+      /* Get the recent tab data. */
+      chrome.tabs.get(tab.get('id'), function(tabData) {
         var activityGroup;
 
-        /* NOTES: Sometimes chrome passes undefined tab. */
-        if (tab) {
-          activityGroup = new background.ActivityGroupView({
-            collection: activities,
-            attributes: {
-              label: tab.url
-            }
-          });
-          $list.append(activityGroup.el);
-        }
+        /* Update tab data. */
+        tab.set(tabData);
+
+        activityGroup = new background.ActivityGroupView({
+          collection: tab.get('activities'),
+          attributes: {
+            label: tab.get('url')
+          }
+        });
+
+        $list.append(activityGroup.el);
       });
     });
 
