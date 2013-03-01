@@ -122,7 +122,7 @@
     }
 
     /* Add the request data to activity collection. */
-    currentTab.get('activities').add(details);
+    currentTab.get('activities').addRequest(details);
   };
 
   /**
