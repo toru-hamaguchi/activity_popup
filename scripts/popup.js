@@ -25,15 +25,16 @@
    * On 'Copy to clipboard' clicked.
    */
   var onCopyToClipboardClicked = function() {
-    var $selected = $('#activity option:selected')
-      , list = [];
+    var list = [];
 
-    if ($selected.length > 0) {
-      $selected.each(function() {
+    $('#activity optgroup[label]').each(function() {
+      $(this).find('option:selected').each(function() {
         list.push($(this).text());
       });
+    });
 
-      /* Send text to background. */
+    /* Send text to background. */
+    if (list.length > 0) {
       background.postMessage({
         type: 'copy',
         text: list.join('\n')
@@ -74,6 +75,12 @@
       /* Get the recent tab data. */
       chrome.tabs.get(tab.get('id'), function(tabData) {
         var activityGroup;
+
+        /* Exclude undefined tab. (Instant pages ?) */
+        if (tabData === undefined) {
+          background.tabs.remove(tab);
+          return;
+        }
 
         /* Update tab data. */
         tab.set(tabData);

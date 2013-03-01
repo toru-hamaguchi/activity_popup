@@ -110,7 +110,12 @@
       });
       window.tabs.add(currentTab);
 
-      /* Set tab data to the new model. */
+      /**
+       * Set tab data to the new model.
+       *
+       * TODO: Sometimes chrome.tabs.get() reports error.
+       * @see https://code.google.com/p/chromium/issues/detail?id=93646
+       */
       chrome.tabs.get(tabId, function(tab) {
         currentTab.set(tab);
       });
