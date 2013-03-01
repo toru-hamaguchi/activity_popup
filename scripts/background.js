@@ -93,7 +93,7 @@
       , currentTab;
 
     /* Check invalid tab id. */
-    if (tabId < 0) {
+    if (tabId === undefined || tabId < 0) {
       return;
     }
 
@@ -105,6 +105,7 @@
     if (currentTab === undefined) {
       /* Add a new tab model to collection. */
       currentTab = new window.TabModel({
+        id: tabId,
         activities: new window.ActivityCollection()
       });
       window.tabs.add(currentTab);
