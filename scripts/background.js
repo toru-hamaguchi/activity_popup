@@ -36,6 +36,19 @@
       }
     );
 
+    /* On updated. */
+    chrome.tabs.onUpdated.addListener(
+      function(tabId, changeInfo, tab) {
+        var currentTab = window.tabs.find(function(tab) {
+          return tab.id === tabId;
+        });
+        if (currentTab) {
+          /* Update tab data. */
+          currentTab.set(tab);
+        }
+      }
+    );
+
     /* On removed. */
     chrome.tabs.onRemoved.addListener(
       function(tabId, removeInfo) {
