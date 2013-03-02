@@ -4,7 +4,6 @@
 
 (function(exports) {
 
-  // var tabCollection;
   var tabs = new window.TabCollection();
 
   /**
