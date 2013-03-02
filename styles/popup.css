@@ -5,17 +5,17 @@ body {
   min-width: 640px;
 }
 
-#controls {
+.controls {
   display: -webkit-box;
   display: box;
   width: 100%;
 }
 
-#controls p {
+.controls p {
   width: 50%;
 }
 
-#controls p:last-child {
+.controls p:last-child {
   text-align: right;
 }
 

@@ -5,6 +5,7 @@
 (function($, _) {
 
   var background;
+  var controls;
 
   /**
    * On 'Select all' clicked.
@@ -109,18 +110,21 @@
    * Set controls action.
    */
   var setContolsAction = function() {
-    $('#select-all').on('click', onSelectAllClicked);
-    $('#copy-to-clipboard').on('click', onCopyToClipboardClicked);
+    controls.on('selectAll', onSelectAllClicked);
+    controls.on('copyToClipboard', onCopyToClipboardClicked);
   };
 
   /**
    * Create controls.
    */
   var createControls = function() {
-    $('#controls').append(background.templates['controls']);
+    controls = new background.ControlsView({
+      template: background.templates['controls']
+    });
 
     /* Update button status. */
     $('#activity select').trigger('change');
+    $('#controls').append(controls.el);
   };
 
   /**
