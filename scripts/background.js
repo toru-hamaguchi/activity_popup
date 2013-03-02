@@ -4,6 +4,7 @@
 
 (function(exports) {
 
+  var templates = {};
   var tabs = new window.TabCollection();
 
   /**
@@ -141,8 +142,6 @@
    * Initialize.
    */
   (function() {
-    window.templates = {};
-
     setTabEvents();
     window.addEventListener('load', onWindowLoaded);
     window.addEventListener('message', onMessageRecieved);
@@ -155,6 +154,8 @@
     );
   }());
 
+  /* Exports. */
+  exports.templates = templates;
   exports.tabs = tabs;
 
 }(window));
