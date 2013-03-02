@@ -9,6 +9,7 @@
    */
   var ActivityListView = Backbone.View.extend({
     tagName: 'select',
+    className: 'activity',
     events: {
       'change': 'onSelectionChange',
       'keypress': 'onKeypress'
