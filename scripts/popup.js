@@ -6,20 +6,14 @@
 
   var background;
   var controls;
+  var activityList;
 
   /**
    * On 'Select all' clicked.
    */
   var onSelectAllClicked = function() {
-    $('#activity')
-      .find('option')
-        .prop('selected', true)
-      .end()
-      /* Fire event. */
-      .find('select')
-        .trigger('focus')
-        .trigger('change')
-    ;
+    activityList.selectAll();
+    activityList.$el.focus();
   };
 
   /**
@@ -28,7 +22,7 @@
   var onCopyToClipboardClicked = function() {
     var list = [];
 
-    $('#activity optgroup[label]').each(function() {
+    activityList.$el.find('optgroup[label]').each(function() {
       $(this).find('option:selected').each(function() {
         list.push($(this).text());
       });
@@ -45,12 +39,11 @@
 
   /**
    * On selection changed.
+   *
+   * @param {Number} selectedCount
    */
-  var onSelectionChanged = function() {
-    var $options = $(this).find('option')
-      , $copy = $('#copy-to-clipboard');
-
-    $copy.prop('disabled', $options.filter(':selected').length < 1);
+  var onSelectionChanged = function(selectedCount) {
+    controls[selectedCount > 0 ? 'enableCopy' : 'disableCopy']();
   };
 
   /**
@@ -60,16 +53,16 @@
    */
   var onSelectionKeypress = function(event) {
     if (event.which === 13) {
-      $('#copy-to-clipboard').trigger('click');
+      controls.trigger('copyToClipboard');
     }
   };
 
   /**
-   * Add activity list.
+   * Create activity list.
    */
-  var addActivityList = function() {
+  var createActivityList = function() {
     /* Create a container. */
-    var list = new background.ActivityListView();
+    activityList = new background.ActivityListView();
 
     /* Add all activities in tabs. */
     _.each(background.tabs.models, function(tab) {
@@ -93,25 +86,17 @@
           }
         });
 
-        list.$el.append(activityGroup.el);
+        activityList.$el.append(activityGroup.el);
       });
     });
 
-    $('#activity').append(list.$el);
+    $('#activity').append(activityList.$el);
 
-    /* Set events. */
-    list.on({
-      'change': onSelectionChanged,
+    /* Listen events. */
+    activityList.on({
+      'selectionChange': onSelectionChanged,
       'keypress': onSelectionKeypress
     });
-  };
-
-  /**
-   * Set controls action.
-   */
-  var setContolsAction = function() {
-    controls.on('selectAll', onSelectAllClicked);
-    controls.on('copyToClipboard', onCopyToClipboardClicked);
   };
 
   /**
@@ -122,18 +107,27 @@
       template: background.templates['controls']
     });
 
-    /* Update button status. */
-    $('#activity select').trigger('change');
     $('#controls').append(controls.el);
+  };
+
+  /**
+   * Listen controls events.
+   */
+  var listenControlsEvents = function() {
+    controls.on('selectAll', onSelectAllClicked);
+    controls.on('copyToClipboard', onCopyToClipboardClicked);
   };
 
   /**
    * On DOMContentLoaded.
    */
   var onDocumentLoaded = function() {
-    addActivityList();
+    createActivityList();
     createControls();
-    setContolsAction();
+    listenControlsEvents();
+
+    /* Update button status. */
+    activityList.trigger('selectionChange');
   };
 
   /**
