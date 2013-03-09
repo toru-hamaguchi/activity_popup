@@ -34,6 +34,23 @@
     },
 
     /**
+     * Get selected items.
+     *
+     * @returns {Array}
+     */
+    getSelectedItems: function() {
+      var items = [];
+
+      this.$el.find('optgroup[label]').each(function() {
+        $(this).find('option:checked').each(function() {
+          items.push(this);
+        });
+      });
+
+      return items;
+    },
+
+    /**
      * On selection change.
      */
     onSelectionChange: function() {

@@ -39,22 +39,16 @@
      * Copy to clipboard.
      */
     copyToClipboard: function() {
-      var activityList = this.activityList
-        , background = this.background
-        , list = [];
-
-      activityList.$el.find('optgroup[label]').each(function() {
-        $(this).find('option:selected').each(function() {
-          list.push($(this).text());
-        });
+      var list = $.map(this.activityList.getSelectedItems(), function(item) {
+        return $(item).text();
       });
 
       /* Send text to background. */
       if (list.length > 0) {
-        background.postMessage({
+        this.background.postMessage({
           type: 'copy',
           text: list.join('\n')
-        }, background.location.origin);
+        }, this.background.location.origin);
       }
     },
 
