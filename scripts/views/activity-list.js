@@ -37,7 +37,8 @@
      * On selection change.
      */
     onSelectionChange: function() {
-      var selected = this.$el.find('option:selected');
+      var selected = this.$el.find('option:checked');
+
       this.trigger('selectionChange', selected.length);
     },
 
