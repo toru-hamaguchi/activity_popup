@@ -13,16 +13,26 @@
       this.render();
     },
     render: function() {
-      var self = this;
+      /* Add all requested activityes. */
+      _.each(this.collection.models, _.bind(this.addActivity, this));
 
-      _.each(this.collection.models, function(activityModel) {
-        var activity = new window.ActivityView({
-          model: activityModel
-        });
-        self.$el.append(activity.el);
-      });
+      /* Listen new request addition. */
+      this.listenTo(this.collection, 'add', this.addActivity);
 
       return this;
+    },
+
+    /**
+     * Add an activity.
+     *
+     * @param {Object} model
+     */
+    addActivity: function(model) {
+      var activity = new window.ActivityView({
+        model: model
+      });
+
+      this.$el.append(activity.el);
     }
   });
 

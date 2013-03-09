@@ -63,6 +63,25 @@
   };
 
   /**
+   * Set request event handler.
+   */
+  var setRequestEvents = function() {
+    /* On before request. */
+    chrome.webRequest.onBeforeRequest.addListener(
+      updateRequestData,
+      { urls: ['<all_urls>'] },
+      [ 'blocking' ]
+    );
+
+    /* On completed. */
+    chrome.webRequest.onCompleted.addListener(
+      updateRequestData,
+      { urls: ['<all_urls>'] },
+      [ 'responseHeaders' ]
+    );
+  };
+
+  /**
    * On window loaded.
    */
   var onWindowLoaded = function() {
@@ -97,11 +116,11 @@
   };
 
   /**
-   * On before request.
+   * Update request data.
    *
    * @param {Object} details
    */
-  var onBeforeRequest = function(details) {
+  var updateRequestData = function(details) {
     var tabId = details.tabId
       , currentTab;
 
@@ -142,16 +161,10 @@
    * Initialize.
    */
   (function() {
-    setTabEvents();
     window.addEventListener('load', onWindowLoaded);
     window.addEventListener('message', onMessageRecieved);
-
-    /* Observe requests. */
-    chrome.webRequest.onBeforeRequest.addListener(
-      onBeforeRequest,
-      { urls: ['<all_urls>'] },
-      [ 'blocking' ]
-    );
+    setTabEvents();
+    setRequestEvents();
   }());
 
   /* Exports. */
