@@ -100,7 +100,7 @@
       var background = this.background
         , controls;
 
-      controls = new background.ControlsView({
+      controls = new window.ControlsView({
         template: background.templates['controls']
       });
 
@@ -118,7 +118,7 @@
         , activityList;
 
       /* Create a container. */
-      activityList = new background.ActivityListView();
+      activityList = new window.ActivityListView();
 
       /* Add all activities in tabs. */
       _.each(background.tabs.models, function(tab) {
@@ -135,7 +135,7 @@
           /* Update tab data. */
           tab.set(tabData);
 
-          activityGroup = new background.ActivityGroupView({
+          activityGroup = new window.ActivityGroupView({
             collection: tab.get('activities'),
             attributes: {
               label: tab.get('url')

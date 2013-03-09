@@ -8,8 +8,7 @@
    * On DOMContentLoaded.
    */
   var onDocumentLoaded = function() {
-    var background = chrome.extension.getBackgroundPage()
-      , popup = new background.PopupView();
+    var popup = new window.PopupView();
 
     $('body').append(popup.el);
   };
