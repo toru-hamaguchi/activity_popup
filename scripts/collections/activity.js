@@ -9,6 +9,7 @@
 	 */
 	var ActivityCollection = Backbone.Collection.extend({
 		model: window.ActivityModel,
+
 		/**
 		 * Add a request data.
 		 *
