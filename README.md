@@ -27,7 +27,6 @@ TODO
 
 - Options
 - Better UI
-- Real time activity updates
 
 Contribution
 ------------
@@ -48,6 +47,10 @@ Released under the MIT License.
 
 History
 -------
+
+2013-03-11 v0.1.1
+
+* Add real time activity updates
 
 2013-01-20 v0.1.0
 
