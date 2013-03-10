@@ -4,6 +4,9 @@
 
 (function(exports, $, _, Backbone) {
 
+  /**
+   * Tab model.
+   */
   var TabModel = Backbone.Model.extend({
     validate: function(attrs, options) {
       if (attrs.id === undefined || attrs.id < 0) {
