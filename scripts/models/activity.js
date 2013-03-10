@@ -2,7 +2,7 @@
  * @fileOverview Activity Model.
  */
 
-(function(exports, $, _, Backbone) {
+(function(exports, _, Backbone) {
 
 	/**
 	 * Activity Model.
@@ -12,4 +12,4 @@
 	/* Exports. */
 	exports.ActivityModel = ActivityModel;
 
-}(window, jQuery, _, Backbone));
+}(window, _, Backbone));

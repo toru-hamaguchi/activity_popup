@@ -2,7 +2,7 @@
  * @fileOverview Activity Group View.
  */
 
-(function(exports, $, _, Backbone) {
+(function(exports, _, Backbone) {
 
   /**
    * Activity Group View.
@@ -39,4 +39,4 @@
   /* Exports. */
   exports.ActivityGroupView = ActivityGroupView;
 
-}(window, jQuery, _, Backbone));
+}(window, _, Backbone));

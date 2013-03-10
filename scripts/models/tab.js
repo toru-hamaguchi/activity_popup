@@ -2,7 +2,7 @@
  * @fileOverview Tab Model.
  */
 
-(function(exports, $, _, Backbone) {
+(function(exports, _, Backbone) {
 
   /**
    * Tab model.
@@ -18,4 +18,4 @@
   /* Exports. */
   exports.TabModel = TabModel;
 
-}(window, jQuery, _, Backbone));
+}(window, _, Backbone));

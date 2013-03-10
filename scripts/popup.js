@@ -2,7 +2,7 @@
  * @fileOverview popup functions.
  */
 
-(function($, _) {
+(function() {
 
   /**
    * On DOMContentLoaded.
@@ -10,7 +10,7 @@
   var onDocumentLoaded = function() {
     var popup = new window.PopupView();
 
-    $('body').append(popup.el);
+    document.body.appendChild(popup.el);
   };
 
   /**
@@ -20,4 +20,4 @@
     document.addEventListener('DOMContentLoaded', onDocumentLoaded);
   }());
 
-}(jQuery, _));
+}());

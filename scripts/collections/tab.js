@@ -2,7 +2,7 @@
  * @fileOverview Tab Collection.
  */
 
-(function(exports, $, _, Backbone) {
+(function(exports, _, Backbone) {
 
   /**
    * Tab collection.
@@ -14,4 +14,4 @@
   /* Exports. */
   exports.TabCollection = TabCollection;
 
-}(window, jQuery, _, Backbone));
+}(window, _, Backbone));

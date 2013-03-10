@@ -2,7 +2,7 @@
  * @fileOverview Activity View.
  */
 
-(function(exports, $, _, Backbone) {
+(function(exports, _, Backbone) {
 
 	/**
 	 * Activity View.
@@ -46,4 +46,4 @@
 	/* Exports. */
 	exports.ActivityView = ActivityView;
 
-}(window, jQuery, _, Backbone));
+}(window, _, Backbone));

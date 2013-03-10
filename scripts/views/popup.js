@@ -2,7 +2,7 @@
  * @fileOverview Popup View.
  */
 
-(function(exports, $, _, Backbone) {
+(function(exports, _, Backbone) {
 
   /**
    * Popup View.
@@ -39,8 +39,8 @@
      * Copy to clipboard.
      */
     copyToClipboard: function() {
-      var list = $.map(this.activityList.getSelectedItems(), function(item) {
-        return $(item).text();
+      var list = _.map(this.activityList.getSelectedItems(), function(element) {
+        return element.innerText;
       });
 
       /* Send text to background. */
@@ -147,4 +147,4 @@
   /* Exports. */
   exports.PopupView = PopupView;
 
-}(window, jQuery, _, Backbone));
+}(window, _, Backbone));

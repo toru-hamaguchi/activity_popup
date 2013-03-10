@@ -2,7 +2,7 @@
  * @fileOverview Activity Collection.
  */
 
-(function(exports, $, _, Backbone) {
+(function(exports, _, Backbone) {
 
 	/**
 	 * Activity collection.
@@ -36,4 +36,4 @@
 	/* Exports. */
 	exports.ActivityCollection = ActivityCollection;
 
-}(window, jQuery, _, Backbone));
+}(window, _, Backbone));

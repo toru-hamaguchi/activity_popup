@@ -2,7 +2,7 @@
  * @fileOverview Activity List View.
  */
 
-(function(exports, $, _, Backbone) {
+(function(exports, _, Backbone) {
 
   /**
    * Activity List View.
@@ -39,15 +39,9 @@
      * @returns {Array}
      */
     getSelectedItems: function() {
-      var items = [];
-
-      this.$el.find('optgroup[label]').each(function() {
-        $(this).find('option:checked').each(function() {
-          items.push(this);
-        });
+      return this.$el.find('optgroup[label] > option:checked').map(function() {
+        return this;
       });
-
-      return items;
     },
 
     /**
@@ -70,4 +64,4 @@
   /* Exports. */
   exports.ActivityListView = ActivityListView;
 
-}(window, jQuery, _, Backbone));
+}(window, _, Backbone));

@@ -2,7 +2,7 @@
  * @fileOverview Controls View.
  */
 
-(function(exports, $, _, Backbone) {
+(function(exports, _, Backbone) {
 
   /**
    * Controls View.
@@ -60,4 +60,4 @@
   /* Exports. */
   exports.ControlsView = ControlsView;
 
-}(window, jQuery, _, Backbone));
+}(window, _, Backbone));
