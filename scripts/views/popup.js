@@ -47,7 +47,7 @@
       if (list.length > 0) {
         this.background.postMessage({
           type: 'copy',
-          text: list.join('\n')
+          body: list.join('\n')
         }, this.background.location.origin);
       }
     },

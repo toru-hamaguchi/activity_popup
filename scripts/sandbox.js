@@ -35,7 +35,7 @@
       event.source.postMessage({
         type: 'template',
         name: name,
-        html: templates[name](event.data.context)
+        body: templates[name](event.data.context)
       }, event.origin);
     }
   };

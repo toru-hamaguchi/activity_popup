@@ -108,10 +108,10 @@
       , name = event.data.name;
 
     if (type === 'template') {
-      window.templates[name] = event.data.html;
+      window.templates[name] = event.data.body;
     }
     if (type === 'copy') {
-      sendTextToClipboard(event.data.text);
+      sendTextToClipboard(event.data.body);
     }
   };
 
