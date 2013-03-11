@@ -29,15 +29,16 @@
 			var url = this.model.get('url')
 				, statusCode = this.model.get('statusCode');
 
-			this.$el.text(url);
-
 			if (statusCode === undefined) {
+				this.$el.text('['+ chrome.i18n.getMessage('loading') +'...]'+ url);
 				this.$el.attr('class', 'status-none');
 			}
 			else if (statusCode === 200) {
+				this.$el.text(url);
 				this.$el.attr('class', 'status-200');
 			}
 			else {
+				this.$el.text('['+ statusCode +']'+ url);
 				this.$el.attr('class', 'status-error');
 			}
 		}

@@ -14,5 +14,9 @@
   "copyToClipboard": {
     "message": "Copy to clipboard",
     "description": "\"Copy to clipboard\" button text"
+  },
+  "loading": {
+    "message": "Loading",
+    "description": "Status text of loading activity"
   }
 }

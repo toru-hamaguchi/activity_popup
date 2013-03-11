@@ -14,5 +14,9 @@
   "copyToClipboard": {
     "message": "クリップボードにコピー",
     "description": "\"Copy to clipboard\" button text"
+  },
+  "loading": {
+    "message": "読込中",
+    "description": "Status text of loading activity"
   }
 }

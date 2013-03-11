@@ -39,8 +39,11 @@
      * Copy to clipboard.
      */
     copyToClipboard: function() {
+      var reExclude = /^\[.*\]/;
+
       var list = _.map(this.activityList.getSelectedItems(), function(element) {
-        return element.innerText;
+        /* Remove status text in activity items. */
+        return element.innerText.replace(reExclude, '');
       });
 
       /* Send text to background. */
