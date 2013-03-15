@@ -1,6 +1,6 @@
 {
   "name": "activity-popup",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Activity Popup is \"Activity Window\" for Google Chrome.",
   "author": "toru hamaguchi",
   "repository": {

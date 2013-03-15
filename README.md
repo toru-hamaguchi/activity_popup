@@ -25,7 +25,6 @@ Usage
 TODO
 ----
 
-- Options
 - Better UI
 
 Contribution
@@ -47,6 +46,10 @@ Released under the MIT License.
 
 History
 -------
+
+2013-03-16 v0.1.2
+
+* Add options page
 
 2013-03-11 v0.1.1
 
