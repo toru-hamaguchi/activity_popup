@@ -18,5 +18,13 @@
   "loading": {
     "message": "Loading",
     "description": "Status text of loading activity"
+  },
+  "preferences": {
+    "message": "Preferences",
+    "description": "Option page text"
+  },
+  "copyOnlyLoaded": {
+    "message": "Copy only the request that has completed loading",
+    "description": "Option page text"
   }
 }

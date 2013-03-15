@@ -87,15 +87,32 @@
   var onWindowLoaded = function() {
     var iframe = document.getElementById('sandbox');
 
-    /* Do unsafe functions. */
-    iframe.contentWindow.postMessage({
-      type: 'render',
-      name: 'controls',
-      context: {
-        selectAll: chrome.i18n.getMessage('selectAll'),
-        copyToClipboard: chrome.i18n.getMessage('copyToClipboard')
+    var renderData = [
+      {
+        name: 'controls',
+        context: {
+          selectAll: chrome.i18n.getMessage('selectAll'),
+          copyToClipboard: chrome.i18n.getMessage('copyToClipboard')
+        }
+      },
+      {
+        name: 'options',
+        context: {
+          extName: chrome.i18n.getMessage('extName'),
+          preferences: chrome.i18n.getMessage('preferences'),
+          copyOnlyLoaded: chrome.i18n.getMessage('copyOnlyLoaded')
+        }
       }
-    }, '*');
+    ];
+
+    /* Do unsafe functions. */
+    renderData.forEach(function(data) {
+      iframe.contentWindow.postMessage({
+        type: 'render',
+        name: data.name,
+        context: data.context
+      }, '*');
+    });
   };
 
   /**

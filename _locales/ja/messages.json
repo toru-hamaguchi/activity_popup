@@ -18,5 +18,13 @@
   "loading": {
     "message": "読込中",
     "description": "Status text of loading activity"
+  },
+  "preferences": {
+    "message": "設定",
+    "description": "Option page text"
+  },
+  "copyOnlyLoaded": {
+    "message": "読み込みが完了したリクエストのみコピーする",
+    "description": "Option page text"
   }
 }

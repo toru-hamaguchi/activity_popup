@@ -11,5 +11,12 @@
     <p><input type="button" value="<%- selectAll %>" class="select-all"></p>
     <p><input type="button" value="<%- copyToClipboard %>" class="copy-to-clipboard"></p>
   </script>
+  <script type="text/template" id="options-template">
+	  <h1><%- extName %></h1>
+	  <h2><%- preferences %></h2>
+  	<ul>
+	    <li><label><input type="checkbox" name="copy-only-loaded"><%- copyOnlyLoaded %></label></li>
+	  </ul>
+  </script>
 </body>
 </html>

@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+body {
+	padding: 25px 100px;
+	font-family: "Segoe UI Semilight", "Open Sans", Verdana, Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2 {
+	font-weight: 200;
+}
+
+h2 {
+	color: rgba(0, 0, 0, 0.6);
+}
+
+ul {
+	list-style: none;
+	padding-left: 0;
+	font-size: small;
+}
+
+li {
+	margin-bottom: 1em;
+}
+
+ul label {
+	cursor: pointer;
+	display: block;
+	padding: 1em;
+	background-color: #f5f5f5;
+	text-shadow: 0 1px 0 #fff;
+	-webkit-transition: background-color 200ms ease-in;
+	transition: background-color 200ms ease-in;
+}
+
+ul label:hover {
+	background-color: #eee;
+}

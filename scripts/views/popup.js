@@ -36,15 +36,66 @@
     },
 
     /**
+     * Get an option.
+     *
+     * @param {String} name
+     * @returns {Any}
+     */
+    getOption: function(name) {
+      var options = JSON.parse(window.localStorage.getItem('options'))
+        , value;
+
+      if (options && options[name]) {
+        value = options[name];
+      }
+      return value;
+    },
+
+    /**
      * Copy to clipboard.
      */
     copyToClipboard: function() {
-      var reExclude = /^\[.*\]/;
+      var reExclude = /^\[.*\]/
+        , options = JSON.parse(window.localStorage.getItem('options'))
+        , mapCallback
+        , list;
 
-      var list = _.map(this.activityList.getSelectedItems(), function(element) {
+      /**
+       * Extract all activity items.
+       *
+       * @param {String} item
+       * @returns {String}
+       */
+      var extractAll = function(item) {
         /* Remove status text in activity items. */
-        return element.innerText.replace(reExclude, '');
-      });
+        return item.replace(reExclude, '');
+      };
+
+      /**
+       * Extract loaded activity items.
+       *
+       * @param {String} item
+       * @returns {String}
+       */
+      var extractLoaded = function(item) {
+        /* Find loaded activity items. */
+        if (reExclude.test(item) === false) {
+          return item;
+        }
+      };
+
+      /* Set map callback function by an option. */
+      if (this.getOption('copy-only-loaded') === true) {
+        mapCallback = extractLoaded;
+      }
+      else {
+        mapCallback = extractAll;
+      }
+
+      /* Get listed activities. */
+      list = _.compact(_.map(this.activityList.getSelectedItems(), function(element) {
+        return mapCallback(element.innerText);
+      }));
 
       /* Send text to background. */
       if (list.length > 0) {

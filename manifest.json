@@ -10,6 +10,8 @@
     "page": "pages/background.html"
   },
 
+  "options_page": "pages/options.html",
+
   "sandbox": {
     "pages": [
       "pages/sandbox.html"

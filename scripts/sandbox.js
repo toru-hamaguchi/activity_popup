@@ -11,7 +11,8 @@
    */
   var storeTemplates = function() {
     templates = {
-      'controls': _.template(document.getElementById('controls-template').innerHTML)
+      'controls': _.template(document.getElementById('controls-template').innerHTML),
+      'options': _.template(document.getElementById('options-template').innerHTML)
     };
   };
 
